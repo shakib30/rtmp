@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Stream</title>
+
+  <!-- Add Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="./index.html">Live Stream</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="./index.html">Home</a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link" href="https://onlinesharehub.com/newsfeed-2/">Newsfeed</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://download.onlinesharehub.com/">Video Download</a>
+        </li>
+		
+		<li class="nav-item">
+          <a class="nav-link" href="https://schedule.onlinesharehub.com/">schedule Post</a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link" href="https://onlinesharehub.com/online-tool/">Online Tools</a>
+        
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- View Count -->
+  <div class="container mt-5">
+    <h2>Live Stream</h2>
+    <video id="video" width="100%" controls="false"></video>
+    <div id="viewCount" class="text-center mt-3">Viewers: 0</div>
+  </div>
+
+  <!-- Share Button -->
+  <div class="container text-center">
+    <button id="shareButton" class="btn btn-primary mt-3">Share</button>
+    <div id="embedCode" style="display: none;">
+      <textarea class="form-control" rows="3" readonly>
+        <!-- Your embed code here -->
+        &lt;iframe src="https://live.onlinesharehub.com/channel-1.html" width="800" height="450" frameborder="0" allowfullscreen>&lt;/iframe>
+      </textarea>
+    </div>
+  </div>
+  
+ 
+ <footer class="bg-dark text-white py-4">
+    <div class="container text-center">
+      <p>
+        <a href="#">Terms of Service</a> | 
+        <a href="#">Privacy</a> | 
+        <a href="#">Sitemap</a> | 
+        <a href="#">Contact Us</a> | 
+        <a href="#">Copyright</a> | 
+        <a href="#">About</a>
+      </p>
+      <p>&copy; 2023 onlinesharehub.com</p>
+    </div>
+</footer>
+
+
+  <!-- Include Bootstrap and HLS.js scripts -->
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  </script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"
+    integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+k8f/0p3Z5gwkY5p5F5G5F5G5F5"
+    crossorigin="anonymous"
+  </script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+k8f/0p3Z5gwkY5p5F5G5F5G5F5"
+    crossorigin="anonymous"
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+  <script>
+    var video = document.getElementById("video");
+    var videoSrc = "/hls/sp1.m3u8";
+
+    // View Count Logic
+    var viewCountElement = document.getElementById("viewCount");
+    var viewerCount = 0;
+
+    // Share Button Logic
+    var shareButton = document.getElementById("shareButton");
+    var embedCode = document.getElementById("embedCode");
+
+    shareButton.addEventListener("click", function () {
+      embedCode.style.display = "block";
+    });
+
+    if (Hls.isSupported()) {
+      var hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = videoSrc;
+    }
+
+    // Simulate viewer count increase (for demonstration purposes)
+    setInterval(function () {
+      viewerCount++;
+      viewCountElement.innerText = "Viewers: " + viewerCount;
+    }, 5000); // Update every 5 seconds
+  </script>
+</body>
+</html>
