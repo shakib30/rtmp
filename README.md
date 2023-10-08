@@ -1,5 +1,5 @@
 # How to run
-1. ` apt install Docker `
+1. ` apt install docker `
 2. cd rtmp 
 2. ` docker-compose build `
 3. ` docker-compose up `
