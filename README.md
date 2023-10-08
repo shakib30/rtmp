@@ -1,6 +1,8 @@
 # How to run
 1. ` apt install docker `
-2. cd rtmp 
+2. ` apt install docker-compose`
+3. ` apt-get update `
+4. cd rtmp 
 2. ` docker-compose build `
 3. ` docker-compose up `
 4. Open OBS and in settings set the server to `rtmp://localhost:1935/live` and the stream key to `test?key=supersecret`
